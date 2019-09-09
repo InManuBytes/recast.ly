@@ -15,15 +15,13 @@ class App extends React.Component {
       //one video object with empty fields initially
       videos: [],
       //videos: exampleVideoData,
-      //default video?
+      //default video -> we're using example video data, but it could be something else
       currentVideo: exampleVideoData[0],
       query: 'cats',
       timeout: null
     };
     // styling best practice: put bind functions below state
     this.onVideoClick = this.onVideoClick.bind(this);
-    // uncontrolled component
-    // this.input = React.createRef();
   }
 
 
@@ -56,7 +54,7 @@ class App extends React.Component {
       // user feedback would go here that they're sending requests too quickly
       if (this.state.timeout !== null) {
         alert(`Too many searches too quickly. Please wait a moment and search again for ${inputField.value}`);
-        clearTimeout(this.state.timeout);
+        clearTimeout(this.state.timeout); //cancels a timeout previously established by calling setTimeout()
       }
 
       this.props.searchYouTube(options, (data) => {
